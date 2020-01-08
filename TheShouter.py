@@ -22,9 +22,6 @@ def showip():
 
 connect()
 
-
-
-
 import network
 import time
 import machine
