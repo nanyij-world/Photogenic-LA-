@@ -1,7 +1,3 @@
-#
-# example ESP8266 or ESP32 Huzzah mqtt publish/subscribe with io.adafruit.com
-# phil van allen
-#
 # thanks to https://github.com/MikeTeachman/micropython-adafruit-mqtt-esp8266/blob/master/mqtt-to-adafruit.py
 #
 
@@ -27,11 +23,9 @@ def sub_cb(topic, msg):
     else:
         pin.value(0)
 
-#
 # connect the ESP to local wifi network
-#
-yourWifiSSID = "ACCD"
-yourWifiPassword = "tink1930"
+yourWifiSSID = ""
+yourWifiPassword = ""
 sta_if = network.WLAN(network.STA_IF)
 if not sta_if.isconnected():
     sta_if.active(True)
@@ -40,13 +34,11 @@ if not sta_if.isconnected():
         pass
 print("connected to WiFi")
 
-#
 # connect ESP to Adafruit IO using MQTT
-#
-myMqttClient = "heyheyclient"  # replace with your own client name
-adafruitUsername = "njiang"  # can be found at "My Account" at adafruit.com
-adafruitAioKey = "34446144134c45b18575c8527982b616"  # can be found by clicking on "VIEW AIO KEYS" when viewing an Adafruit IO Feed
-adafruitFeed = adafruitUsername + "/feeds/mydata" # replace "test" with your feed name
+myMqttClient = ""  
+adafruitUsername = ""  
+adafruitAioKey = ""  
+adafruitFeed = adafruitUsername + "/feeds/mydata" 
 adafruitIoUrl = "io.adafruit.com"
 
 c = MQTTClient(myMqttClient, adafruitIoUrl, 0, adafruitUsername, adafruitAioKey)
@@ -56,7 +48,6 @@ c.subscribe(bytes(adafruitFeed,'utf-8'))
 
 
 while True:
-#    print(button.value())
     if button.value() == 1:
         led.value(1)
         time.sleep(10)
